@@ -1,18 +1,37 @@
 import React, { Component } from "react";
 import Product from "../components/product";
+import database from '../components/firebase';
 
 export default class Store extends Component {
+
+    constructor(props) {
+        super(props);
+
+        const products = [];
+
+        database.collection("products").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+
+                var product = doc.data();
+
+                products.push(product);
+            })
+        });
+
+        this.state = { products };
+    }
+
     render() {
+        console.log(this.state.products);
         return (
             <div id="store">
                 <h1>Store</h1>
                 <div id="products-list">
-                    <Product name="Product1" price="99.99" quantity="100" image_href=""/>
-                    <Product name="Product1" price="33.99" quantity="0" image_href=""/>
-                    <Product name="Product1" price="33.99" quantity="0" image_href=""/>
-                    <Product name="Product1" price="33.99" quantity="0" image_href=""/>
-                    <Product name="Product1" price="33.99" quantity="0" image_href=""/>
-                    <Product name="Product1" price="33.99" quantity="0" image_href=""/>
+                    {this.state.products.map((product) => (
+                        <>
+                        <Product name="Hello" price="39.00" quantity="10" image_href="" />
+                        </>
+                    ))}
                 </div>
             </div>
         )
