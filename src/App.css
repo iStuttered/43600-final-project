@@ -31,3 +31,22 @@
     transform: rotate(360deg);
   }
 }
+
+#products-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px auto;
+}
+
+.product {
+  margin: 15px;
+}
+
+.button, img {
+  display: block;
+}
+
+nav li {
+  display: inline-block;
+  margin: 10px;
+}
